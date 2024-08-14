@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta chartset="UTF-8">
+	<title>Data Summary Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+	<h1> Summary of Data</h1>
+  <p> Mouse over the a bar to see its value.</p>
+  <input type="month" id="year_month" name="year_month" />
+  <input type="submit" id="submit" name="submit" onclick="location.href=window.location.href=''+document.getElementById('year_month').value;"/>
+
+  <div style="height:{{ height }}">
+    <canvas id="chart"></canvas>
+  </div>
+  <script>    
+    // Bar chart 
+    const dates = {{ dates|tojson }};
+    const males = {{ males|tojson }};
+    const females = {{ females|tojson }}
+
+    const data = {
+      labels: dates,
+      datasets: [{
+        label: 'Males',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: males,
+      },
+      {
+        label: 'Females',
+        backgroundColor: 'rgb(99, 255, 132)',
+        borderColor: 'rbg(99, 255, 132)',
+        data: females
+      }]
+    };
+    
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: {
+            stacked: true,
+          },
+          yAxes: {
+            stacked: true
+          }
+        }
+      }
+    };
+
+    const actions = [
+      {
+        name: 'Test',
+        handler(chart){
+          chart.data.datasets.forEach(dataset => {
+            dataset.data = Utils.numbers({count: chart.data.labels.length, min: -100, max: 100});
+          });
+          chart.update();
+        }
+      }
+    ];
+
+    const myChart = new Chart(
+      document.getElementById('chart'),
+      config
+    );
+
+  </script>
+</body>
+
+
+</html>
+
+

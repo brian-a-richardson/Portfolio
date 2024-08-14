@@ -1,0 +1,20 @@
+{
+  "-MpJSZ9L4r08XpSI6-Vx" : {
+    "cubeMac" : "test",
+    "message" : "",
+    "status" : "2022",
+    "timestamp" : "1637799873096"
+  },
+  "-MpJTgd7cyJY2nq3JM6B" : {
+    "cubeMac" : "test",
+    "message" : "Error in generating",
+    "status" : "2021",
+    "timestamp" : 1637799576214
+  },
+  "-MpJTlfM6kKhwM0mFSLn" : {
+    "cubeMac" : "test2",
+    "message" : "",
+    "status" : "2022",
+    "timestamp" : 1637799893719
+  }
+}
